@@ -1,0 +1,9 @@
+logs
+tmp
+*.pyc
+*.pyo
+*.bak
+*.swp
+*.orig
+.project
+.pydevproject
