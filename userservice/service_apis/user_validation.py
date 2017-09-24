@@ -9,6 +9,8 @@ from userservice.service_api_handlers import \
     post_user_validation_handler, delete_user_validation_handler
 from userservice.utils.resource import Resource
 from userservice.utils.auth import get_user
+from uni_db.mob_app.models import User_Details
+
 #from userservice.utils.utility_funcs import send_exception_mail
 
 
@@ -31,11 +33,13 @@ class UserValidation(Resource):
         if is_authorized:
             app.logger.info("Validated the login credentials for %s",
                             request.json['emailId'])
+            user_obj = User_Details.objects.get(user=get_user())
             return {
                 'responseData': {
                     'name': get_user().get_full_name(),
                     app.auth_header_name: session.get('key'),
                     'is_authorized': is_authorized,
+                    'is_admin': user_obj.is_admin
                 }
             }
         else:
