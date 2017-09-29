@@ -46,9 +46,9 @@ class UserValidation(Resource):
             app.logger.exception("Invalid username or password %s",
                                  request.remote_addr)
             return {
-                'errorMessage':
+                'responseMessage':
                     'The email or password you entered is incorrect',
-                'errorCode': 403
+                'responseCode': 503
             }
 
     # This method is exempted from authentication
