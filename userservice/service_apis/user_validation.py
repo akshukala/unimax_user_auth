@@ -36,6 +36,7 @@ class UserValidation(Resource):
             user_obj = User_Details.objects.get(user=get_user())
             return {
                 'responseData': {
+                    'responseCode': 200,
                     'name': get_user().get_full_name(),
                     app.auth_header_name: session.get('key'),
                     'is_authorized': is_authorized,
